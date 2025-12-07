@@ -1,21 +1,19 @@
 <?php
-session_start();
-
-$users = [
-    'admin' => 'fuji2025',
-    'guest' => 'sunset'
-];
-
+$login = $_POST['login'] ?? '';
+$pass  = $_POST['pass'] ?? '';
+$ok    = false;
 $error = '';
+
 if ($_POST) {
-    $login = $_POST['login'] ?? '';
-    $pass = $_POST['pass'] ?? '';
-    
-    if (isset($users[$login]) && $users[$login] === $pass) {
-        $_SESSION['access'] = true;
-        $_SESSION['user'] = $login;
+    if (strlen($login) < 6) {
+        $error = 'Логин должен быть не короче 6 символов!';
+    } elseif (strlen($pass) < 6) {
+        $error = 'Пароль должен быть не короче 6 символов!';
+    }
+    elseif ($login === 'fadutf_oels' && $pass === '123456789') {
+        $ok = true;
     } else {
-        $error = 'Неправильно!';
+        $error = 'Неправильный логин или пароль!';
     }
 }
 ?>
@@ -24,55 +22,39 @@ if ($_POST) {
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <title>Gear Cage</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Poppins', sans-serif; padding: 50px; }
-        .form { max-width: 400px; margin: 0 auto; background: #111; padding: 40px; border-radius: 15px; }
-        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; background: #222; color: #fff; }
-        .btn { background: #333; color: #fff; padding: 15px; border: none; border-radius: 10px; cursor: pointer; width: 100%; }
-        .error { color: #ff4444; text-align: center; margin: 10px 0; }
-        .success { text-align: center; line-height: 2; }
-        .back { text-align: center; margin-top: 30px; }
-        .back a { color: #888; text-decoration: none; }
+        body {background:#000;color:#fff;font-family:Arial;text-align:center;padding-top:100px;}
+        input, button {padding:12px;font-size:16px;margin:8px;width:300px;border-radius:8px;}
+        input {background:#222;border:none;color:#fff;}
+        button {background:#333;color:#fff;border:none;cursor:pointer;}
+        button:hover {background:#444;}
+        .error {color:#ff5555;margin:20px;font-size:18px;}
     </style>
 </head>
 <body>
 
-<div class="form">
-    <?php if (!isset($_SESSION['access']) || $_SESSION['access'] !== true): ?>
-        
-        <h2>Вход в Gear Cage</h2>
-        <?php if ($error): ?><div class="error"><?= $error ?></div><?php endif; ?>
-        
-        <form method="POST">
-            <input type="text" name="login" placeholder="Логин" required>
-            <input type="password" name="pass" placeholder="Пароль" required>
-            <button type="submit" class="btn">Войти</button>
-        </form>
-        
-        <p style="text-align:center; color:#666; font-size:12px; margin-top:20px;">
-            admin / fuji2025
-        </p>
-        
-    <?php else: ?>
-        
-        <h2>Привет, <?= $_SESSION['user'] ?>!</h2>
-        <div class="success">
-            <p>Sony A1</p>
-            <p>Sony 24-70mm f/2.8</p>
-            <p>Sony 85mm f/1.4</p>
-            <p>DJI Mavic 3</p>
-            <p>Peak Design Tripod</p>
-        </div>
-        
-        <div class="back">
-            <a href="index.html">← Назад</a>
-        </div>
-        
+<?php if (!$ok): ?>
+    <h2>Вход в Gear Cage</h2>
+
+    <?php if ($error): ?>
+        <div class="error"><?= $error ?></div>
     <?php endif; ?>
-</div>
+
+    <form method="post">
+        <input type="text" name="login" placeholder="Логин (минимум 6 символов)" required><br>
+        <input type="password" name="pass" placeholder="Пароль (минимум 6 символов)" required><br>
+        <button type="submit">Войти</button>
+    </form>
+
+<?php else: ?>
+    <h2>Привет, <?= htmlspecialchars($login) ?>!</h2>
+    <p>Ты вошёл в секретный раздел</p>
+    <hr>
+
+    <br><br>
+    <a href="" style="color:#888;">Выйти — просто обнови страницу (F5)</a>
+<?php endif; ?>
 
 </body>
 </html>
