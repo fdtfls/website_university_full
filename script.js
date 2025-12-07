@@ -1,77 +1,72 @@
-// 1. Плавная прокрутка по якорям (#about, #contact и т.д.)
+// 1. Клик по ссылкам в меню — плавно прокручиваем
 document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.onclick = function(e) {
-        e.preventDefault();
-        const block = document.querySelector(this.getAttribute('href'));
-        if (block) block.scrollIntoView({ behavior: "smooth" });
+    a.onclick = () => {
+        document.querySelector(a.getAttribute('href')).scrollIntoView({
+            behavior: "smooth"
+        });
     };
 });
 
-// 2. Кнопка "наверх" (появляется после 300px прокрутки)
-const topBtn = document.getElementById("scrollToTop");
+// 2. Кнопка "наверх"
+let btn = document.getElementById("scrollToTop");
+
 window.onscroll = () => {
     if (window.scrollY > 300) {
-        topBtn.style.opacity = "1";
-        topBtn.style.pointerEvents = "auto";
+        btn.style.opacity = "1";      // показать
     } else {
-        topBtn.style.opacity = "0";
-        topBtn.style.pointerEvents = "none";
+        btn.style.opacity = "0";      // скрыть
     }
 };
-topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-// 3. Плавное появление элементов при прокрутке (самое простое!)
-window.addEventListener('scroll', () => {
-    document.querySelectorAll('.fade-in').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-            el.classList.add('appear');
+btn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// 3. Блоки появляются при прокрутке
+window.onscroll = () => {
+    document.querySelectorAll(".fade-in").forEach(box => {
+        if (box.getBoundingClientRect().top < window.innerHeight) {
+            box.style.opacity = "1";
+            box.style.transform = "translateY(0)";
         }
     });
-});
+};
 
-// 4. Валидация email в форме подписки
-document.getElementById("subscribeForm").onsubmit = function(e) {
+// 4. Форма подписки на email
+document.getElementById("subscribeForm").onsubmit = e => {
     e.preventDefault();
-    const email = this.emailInput.value.trim();
-    const msg = document.getElementById("formMessage");
+    let email = document.getElementById("emailInput").value;
+    let msg = document.getElementById("formMessage");
 
-    if (email.includes('@') && email.includes('.')) {
-        msg.textContent = "Спасибо за подписку!";
+    if (email.includes("@") && email.includes(".")) {
+        msg.innerText = "Спасибо! Ты в списке";
         msg.style.color = "lime";
-        this.emailInput.value = "";
+        document.getElementById("emailInput").value = "";
     } else {
-        msg.textContent = "Введите правильный email";
+        msg.innerText = "Напиши нормальный email";
         msg.style.color = "red";
     }
-    setTimeout(() => msg.textContent = "", 3000);
+
+    setTimeout(() => msg.innerText = "", 3000);
 };
 
-// 5. Показать/скрыть форму "Get Template"
-document.getElementById("getTemplateBtn").onclick = function(e) {
-    e.preventDefault();
-    const form = document.getElementById("templateForm");
-    form.style.display = (form.style.display === "block") ? "none" : "block";
+// 5. Кнопка "Get Template" — открыть/закрыть форму
+document.getElementById("getTemplateBtn").onclick = () => {
+    let form = document.getElementById("templateForm");
+    if (form.style.display === "block") {
+        form.style.display = "none";
+    } else {
+        form.style.display = "block";
+    }
 };
 
-// 6. Отправка формы (самое простое — без JSON и async)
-document.getElementById("requestForm").onsubmit = function(e) {
+// 6. Отправка формы (просто спасибо)
+document.getElementById("requestForm").onsubmit = e => {
     e.preventDefault();
-    
-    const name = this.name.value;
-    const email = this.email.value;
+    let name = e.target.name.value;
 
-    // Просто имитируем отправку (можно потом заменить на настоящий fetch)
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = "Спасибо, " + name + "! Мы свяжемся с вами на " + email;
-    document.getElementById('notificationContainer').appendChild(notification);
+    alert("Спасибо, " + name + "! Мы тебе напишем");
 
-    setTimeout(() => notification.classList.add('show'), 10);
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
-
-    this.reset(); // очистить форму
+    e.target.reset();                             // очистить форму
     document.getElementById("templateForm").style.display = "none";
 };
