@@ -5,14 +5,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Импорт шрифта Poppins. -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
 </head>
 
+
 <body>
+  <!-- Позиционированием relative для абсолютных элементов внутри. -->
+  <section class="aperture-studios" id="home">
+    <header>
+      <nav class="main-nav">
+        <img src="img/aperture_logo.svg" class="main-nav__logo" alt="logo" />
+        <ul class="main-nav__list" id="navMenu">
+          <li class="main-nav__item"><a href="#business-areas" class="main-nav__link">Business areas</a></li>
+          <li class="main-nav__item"><a href="#featured" class="main-nav__link">Featured images</a></li>
+          <li class="main-nav__item"><a href="#gear" class="main-nav__link">Gear cage</a></li>
+          <li class="main-nav__item"><a href="#contact" class="main-nav__link">Contact</a></li>
+          <li class="main-nav__item">
+            <a href="#" class="main-nav__button" id="getTemplateBtn">Get template</a>
+            <div id="templateForm" class="template-form" style="display: none;">
+              <h3>Request template</h3>
+              <form id="requestForm">
+                <input type="text" name="name" placeholder="Enter your name" class="form__input" required>
+                <input type="email" name="email" placeholder="Enter your email" class="form__input" required>
+                <button type="submit" class="btn">Send</button>
+              </form>
+            </div>
+          </li>
+
+          <div id="notificationContainer" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <!-- flex-direction: column для вертикального стека элементов -->
+    <div class="main-text">
+      <h5 class="main-text__subtitle">PHOTOGRAPHER & FILMMAKER</h5>
+      <h1 class="main-text__title">Aperture Studios</h1>
+      <p class="main-text__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim
+        in eros
+        elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero
+        vitae
+        erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+      </p>
+    </div>
+    <!-- Абсолютно позиционирована внизу справа (bottom: 41px, right: 40px) для отображения параметров фото. -->
+    <nav class="icons-nav">
+      <!-- display: flex с gap: 20px для горизонтального расположения иконок. -->
+      <ul class="icons-nav__list">
+        <li class="icons-nav__item">
+          <img src="img/icon_clock.svg" height="16px" width="16px" />
+          <p class="icons-nav__value">1/2000s</p>
+        </li>
+        <li class="icons-nav__item">
+          <img src="img/icon_focus.svg" height="16px" width="16px" />
+          <p class="icons-nav__value">f/11</p>
+        </li>
+        <li class="icons-nav__item">
+          <img src="img/icon_iso.svg" height="16px" width="32px" />
+          <p class="icons-nav__value">100</p>
+        </li>
+        <li class="icons-nav__item">
+          <img src="img/icon_mark.svg" height="16px" width="10px" />
+          <p class="icons-nav__value">Iceland</p>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="what-we-do" id="business-areas">
+    <h2 class="what-we-do__title fade-in">What we do.</h2>
+    <h4 class="what-we-do__subtitle fade-in">The areas that we're specialized in.</h4>
+
+    <!-- grid с 2 колонками и 2 строками, gap: 16px. -->
+    <div class="tiles">
+      <!-- relative позиционирование с overflow: hidden для обрезки содержимого -->
+      <div class="tile fade-in">
+        <img src="img/product_photography.png" />
+        <div class="tile__content">
+          <p class="tile__title">PRODUCT PHOTOGRAPHY</p>
+          <p class="tile__text">Cras commodo consequat orci, in convallis risus egestas non. Nulla efficitur auctor
+            hendrerit. Etiam ut orci varius, faucibus libero ac, cursus quam.</p>
+          <button type="button" class="tile__btn read-more-btn">
+            <span class="tile__btn-circle"></span>
+            Read more
+          </button>
+        </div>
+      </div>
+      <div class="tile fade-in">
+        <img src="img/architecture_photography.png" width="576px" height="600px" />
+        <div class="tile__content">
+          <p class="tile__title">ARCHITECTURE PHOTOGRAPHY</p>
+          <p class="tile__text">Aenean porta neque eget consequat fringilla. Vestibulum ultrices, orci nec egestas
+            pharetra, ligula est semper enim, nec auctor sapien leo nec purus. Fusce tincidunt aliquet sapien, sit amet
+            rhoncus leo imperdiet nec.</p>
+          <button type="button" class="tile__btn read-more-btn">
+            <span class="tile__btn-circle"></span>
+            Read more
+          </button>
+        </div>
+      </div>
+      <div class="tile fade-in">
+        <img src="img/drone_photography.png" width="576px" height="600px" />
+        <div class="tile__content">
+          <p class="tile__title">DRONE PHOTOGRAPHY</p>
+          <p class="tile__text">Mauris euismod elit et nisi ultrices, ut faucibus orci tincidunt. Duis tristique sed
+            lorem a vestibulum. Cras commodo consequat orci, in convallis risus egestas non. Nulla efficitur auctor
+            hendrerit. Etiam ut orci varius, faucibus libero ac, cursus quam.</p>
+          <button type="button" class="tile__btn read-more-btn">
+            <span class="tile__btn-circle"></span>
+            Read more
+          </button>
+        </div>
+      </div>
+      <div class="tile fade-in">
+        <img src="img/wildlife_photography.png" width="576px" height="600px" />
+        <div class="tile__content">
+          <p class="tile__title">WILDLIFE PHOTOGRAPHY</p>
+          <p class="tile__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio
+            et faucibus. Nulla rhoncus feugiat eros quis consectetur. Morbi neque ex, condimentum dapibus congue et,
+            vulputate ut ligula. Vestibulum sit amet urna turpis.</p>
+          <button type="button" class="tile__btn read-more-btn">
+            <span class="tile__btn-circle"></span>
+            Read more
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
   <!-- Relative позиционирование с фоновым изображением, display: flex для выравнивания содержимого справа. -->
   <section class="sunset-at-mount" id="featured">
     <!-- text-align: left. -->
@@ -58,14 +185,14 @@
           these days — these are the tools that we actually use everyday to capture
           the amazing things around us.
         </p>
+
         <a href="gear.php" 
-          style="margin-top:30px; display:inline-flex; align-items:center; gap:14px; padding:15px 26px; background:rgba(255,255,255,0.1); border-radius:14px; color:#fff; font-family:'Poppins',sans-serif; font-size:16px; font-weight:500; text-decoration:none; transition:background .3s, transform .3s; cursor:pointer;"
-          onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateX(10px)'; this.querySelector('span.circle').style.transform='scale(1.2)'; this.querySelector('span.circle').style.background='rgba(255,255,255,0.3)';"
-          onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateX(0)'; this.querySelector('span.circle').style.transform='scale(1)'; this.querySelector('span.circle').style.background='#000';">
+           style="margin-top:30px; display:inline-flex; align-items:center; gap:14px; padding:15px 26px; background:rgba(255,255,255,0.1); border-radius:14px; color:#fff; font-family:'Poppins',sans-serif; font-size:16px; font-weight:500; text-decoration:none; transition:background .3s, transform .3s; cursor:pointer;"
+           onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateX(10px)'; this.querySelector('span.circle').style.transform='scale(1.2)'; this.querySelector('span.circle').style.background='rgba(255,255,255,0.3)';"
+           onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateX(0)'; this.querySelector('span.circle').style.transform='scale(1)'; this.querySelector('span.circle').style.background='#000';">
             <span class="circle" style="width:32px; height:32px; background:#000; border-radius:50%; display:block; transition:all .3s;"></span>
             Check it out
         </a>
-       
       </div>
     </div>
     <div class="the-gear-cage__right">
@@ -91,7 +218,187 @@
       </nav>
     </div>
   </section>
-  
+
+  <!-- relative с фоновым изображением, display: flex для выравнивания справа, padding для отступов. -->
+  <section class="monstera-leafs">
+    <div class="featured-image fade-in">
+      <p class="featured-image__subtitle">MONSTERA LEAFS</p>
+      <p class="featured-image__text">Vestibulum sit amet urna turpis. Mauris euismod elit et nisi ultrices,
+        ut
+        faucibus orci tincidunt</p>
+    </div>
+    <nav class="icons-nav">
+      <ul class="icons-nav__list">
+        <li class="icons-nav__item">
+          <img src="img/icon_clock.svg" height="16px" width="16px" />
+          <p class="icons-nav__value">1/400s</p>
+        </li>
+        <li class="icons-nav__item">
+          <img src="img/icon_focus.svg" height="16px" width="16px" />
+          <p class="icons-nav__value">f/3,5</p>
+        </li>
+        <li class="icons-nav__item">
+          <img src="img/icon_iso.svg" height="16px" width="32px" />
+          <p class="icons-nav__value">100</p>
+        </li>
+        <li class="icons-nav__item">
+          <img src="img/icon_mark.svg" height="16px" width="10px" />
+          <p class="icons-nav__value">Costa Rica</p>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- padding по всем сторонам, flex-direction: column для вертикального центрирования. -->
+  <section class="past-clients">
+    <div class="past-clients__header fade-in">
+      <h2 class="past-clients__title">Past clients</h2>
+      <h3 class="past-clients__subtitle">Trusted by your favourite companies</h3>
+    </div>
+
+    <div class="past-clients__logos fade-in">
+      <div class="past-clients__logo-item">
+        <img src="img/hill_hayes_logo.svg" alt="Hill Playes" width="128px" height="30px">
+      </div>
+      <div class="past-clients__logo-item">
+        <img src="img/riksgransen_logo.svg" alt="Riksgransen" width="128px" height="78px">
+      </div>
+      <div class="past-clients__logo-item">
+        <img src="img/studio_kai_logo.svg" alt="Studio Cai" width="128px" height="20px">
+      </div>
+      <div class="past-clients__logo-item">
+        <img src="img/chill_industries_logo.svg" alt="Chill Industries" width="128px" height="36px">
+      </div>
+      <div class="past-clients__logo-item">
+        <img src="img/stockholm_logo.svg" alt="Stockholm" width="128px" height="32px">
+      </div>
+    </div>
+  </section>
+
+  <section class="star-fall">
+    <div class="star-fall__text fade-in">
+      <p class="star-fall__text-title">Star fall in the Himalayas</p>
+      <p class="star-fall__text-description">
+        Nulla rhoncus feugiat eros quis consectetur. Morbi neque ex,
+        condimentum dapibus congue et, vulputate ut ligula.
+      </p>
+    </div>
+
+    <nav class="icons-nav">
+      <ul class="icons-nav__list">
+        <li class="icons-nav__item">
+          <img class="icons-nav__icon" src="img/icon_clock.svg" alt="Время экспозиции" width="16" height="16" />
+          <p class="icons-nav__value">6''</p>
+        </li>
+        <li class="icons-nav__item">
+          <img class="icons-nav__icon" src="img/icon_focus.svg" alt="Фокусное расстояние" width="16" height="16" />
+          <p class="icons-nav__value">f/11</p>
+        </li>
+        <li class="icons-nav__item">
+          <img class="icons-nav__icon" src="img/icon_iso.svg" alt="ISO" width="32" height="16" />
+          <p class="icons-nav__value">800</p>
+        </li>
+        <li class="icons-nav__item">
+          <img class="icons-nav__icon" src="img/icon_mark.svg" alt="Место съёмки" width="10" height="16" />
+          <p class="icons-nav__value">Nepal</p>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="need-help" id="contact">
+    <div class="need-help__text fade-in">
+      <h2 class="need-help__title">
+        Need help with photography<br> or videography?
+      </h2>
+      <h4 class="need-help__subtitle">We're here for you!</h4>
+      <button type="button" class="btn">
+        <span class="btn__circle"></span>
+        Get in touch
+      </button>
+    </div>
+  </section>
+
+  <!-- Футер site-footer: Background-color: #000, padding: 100px 120px 60px, flex-direction: column с gap: 70px, max-width: 1168px для центрирования. -->
+  <footer class="site-footer">
+    <!-- Верхняя часть футера: Display: flex с justify-content: space-between для распределения блоков. -->
+    <div class="site-footer__top">
+      <!-- Левый блок: Flex-direction: column с gap: 12px, max-width: 320px. -->
+      <div class="site-footer__top-left">
+        <!-- Логотип футера: Ширина 140px. -->
+        <div class="site-footer__logo">
+          <img src="img/footer_logo.svg" alt="Aperture Photography logo" />
+        </div>
+        <p class="site-footer__slogan">
+          Photographers & videographers capturing the world around us.
+        </p>
+      </div>
+
+      <div class="site-footer__links">
+        <div class="site-footer__block">
+          <p class="site-footer__heading">BUSINESS AREAS</p>
+          <ul class="site-footer__list">
+            <li class="site-footer__item"><a href="#business-areas" class="site-footer__link">Product Photography</a>
+            </li>
+            <li class="site-footer__item"><a href="#business-areas" class="site-footer__link">Architecture
+                Photography</a></li>
+            <li class="site-footer__item"><a href="#business-areas" class="site-footer__link">Drone Photography</a></li>
+            <li class="site-footer__item"><a href="#business-areas" class="site-footer__link">Wildlife Photography</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__block">
+          <p class="site-footer__heading">PAGES</p>
+          <ul class="site-footer__list">
+            <li class="site-footer__item"><a href="#gear" class="site-footer__link">Gear cage</a></li>
+            <li class="site-footer__item"><a href="#featured" class="site-footer__link">Featured images</a></li>
+            <li class="site-footer__item"><a href="#contact" class="site-footer__link">Contact</a></li>
+            <li class="site-footer__item"><a href="#" class="site-footer__link">Style guide</a></li>
+            <li class="site-footer__item"><a href="#" class="site-footer__link">Instructions</a></li>
+            <li class="site-footer__item"><a href="#" class="site-footer__link">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Горизонтальная линия для разделения секций. -->
+    <hr>
+
+    <!-- display: flex с justify-content: space-between, flex-wrap: wrap для адаптивности. -->
+    <div class="site-footer__subscribe">
+      <div class="site-footer__subscribe-text">
+        <p class="site-footer__heading">Subscribe to our newsletter</p>
+        <p class="site-footer__description">Read about all the things we do.</p>
+      </div>
+      <div class="site-footer__form-wrapper">
+        <form class="site-footer__form" id="subscribeForm" action="#">
+          <input type="email" id="emailInput" placeholder="Enter your email" class="form__input" required />
+          <button type="submit"></button>
+        </form>
+        <p class="form-message" id="formMessage"></p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="site-footer__bottom">
+      <p class="site-footer__copyright">
+        © Aperture Photography, Inc. All rights reserved. Licensing
+      </p>
+      <div class="site-footer__socials">
+        <img class="site-footer__icon" src="img/icon_twitter.svg" alt="Twitter" />
+        <img class="site-footer__icon" src="img/icon_inst.svg" alt="Instagram" />
+        <img class="site-footer__icon" src="img/icon_facebook.svg" alt="Facebook" />
+      </div>
+    </div>
+  </footer>
+
+  <!-- Кнопка "Наверх" -->
+  <button class="scroll-to-top" id="scrollToTop">↑</button>
+
+  <script src="script.js"></script>
+
 </body>
 
 </html>
