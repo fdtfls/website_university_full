@@ -1,72 +1,41 @@
-// 1. Клик по ссылкам в меню — плавно прокручиваем
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.onclick = () => {
-        document.querySelector(a.getAttribute('href')).scrollIntoView({
-            behavior: "smooth"
-        });
-    };
+// Плавное перемещение в самый верх, при нажатии на кнопку scrollToTop
+const scrollToTopBtn = document.getElementById("scrollToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 300) {
+    scrollToTopBtn.classList.add("visible");
+  } else {
+    scrollToTopBtn.classList.remove("visible");
+  }
 });
 
-// 2. Кнопка "наверх"
-let btn = document.getElementById("scrollToTop");
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
 
-window.onscroll = () => {
-    if (window.scrollY > 300) {
-        btn.style.opacity = "1";      // показать
-    } else {
-        btn.style.opacity = "0";      // скрыть
-    }
-};
+// Валидация введеной почты при помощи регулярки
+const subscribeForm = document.getElementById("subscribeForm");
+const emailInput = document.getElementById("emailInput");
+const formMessage = document.getElementById("formMessage");
 
-btn.onclick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-};
+subscribeForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-// 3. Блоки появляются при прокрутке
-window.onscroll = () => {
-    document.querySelectorAll(".fade-in").forEach(box => {
-        if (box.getBoundingClientRect().top < window.innerHeight) {
-            box.style.opacity = "1";
-            box.style.transform = "translateY(0)";
-        }
-    });
-};
+  const email = emailInput.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// 4. Форма подписки на email
-document.getElementById("subscribeForm").onsubmit = e => {
-    e.preventDefault();
-    let email = document.getElementById("emailInput").value;
-    let msg = document.getElementById("formMessage");
-
-    if (email.includes("@") && email.includes(".")) {
-        msg.innerText = "Спасибо! Ты в списке";
-        msg.style.color = "lime";
-        document.getElementById("emailInput").value = "";
-    } else {
-        msg.innerText = "Напиши нормальный email";
-        msg.style.color = "red";
-    }
-
-    setTimeout(() => msg.innerText = "", 3000);
-};
-
-// 5. Кнопка "Get Template" — открыть/закрыть форму
-document.getElementById("getTemplateBtn").onclick = () => {
-    let form = document.getElementById("templateForm");
-    if (form.style.display === "block") {
-        form.style.display = "none";
-    } else {
-        form.style.display = "block";
-    }
-};
-
-// 6. Отправка формы (просто спасибо)
-document.getElementById("requestForm").onsubmit = e => {
-    e.preventDefault();
-    let name = e.target.name.value;
-
-    alert("Спасибо, " + name + "! Мы тебе напишем");
-
-    e.target.reset();                             // очистить форму
-    document.getElementById("templateForm").style.display = "none";
-};
+  if (emailRegex.test(email)) {
+    formMessage.textContent = "✓ Thank you for subscribing!";
+    formMessage.style.color = "green";
+    emailInput.value = "";
+  } else {
+    formMessage.textContent = "✗ Please enter a valid email address";
+    formMessage.style.color = "red";
+  }
+  setTimeout(() => {
+    formMessage.textContent = "";
+  }, 3000);
+});
