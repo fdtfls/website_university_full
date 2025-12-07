@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  background: #000;
+}
+
+.sunset-at-mount {
+  position: relative;
+  background: url("../img/mountain.png") center/cover no-repeat;
+  /* width: 1440px; */
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 40px;
+}
+
+.featured-image {
+  width: 298px;
+  height: 60px;
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+.icons-nav {
+  position: absolute;
+  bottom: 41px;
+  right: 40px;
+}
+
+.icons-nav__list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 12px;
+}
+
+.icons-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icons-nav__value {
+  margin: 0;
+}
+
+.the-gear-cage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  position: relative;
+  width: 1440 px;
+  height: 540px;
+}
+
+.the-gear-cage__left {
+  background-color: #000;
+}
+
+.the-gear-cage__right {
+  background: url("../img/gear_cage_background.png") center/cover no-repeat;
+}
+
+.left {
+  width: 609px;
+  margin: 0 auto;
+  margin-top: 113px;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.left__text {
+  color: white;
+  font-size: 14px;
+  text-align: left;
+  width: 514px;
+  height: 80px;
+}
+
+.left__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #C0C0C0;
+  text-align: left;
+  margin-top: 60px;
+  margin-bottom: 0;
+}
+
+.left__title {
+  font-size: 28px;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+}
+
+.btn {
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 400;
+  width: 152px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn__circle {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 4px;
+  margin-right: 0;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateX(10px);
+  opacity: 0.9;
+}
+
+.btn:hover .btn__circle {
+  transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.featured-image__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: white;
+  margin: 0;
+}
+
+.featured-image__text {
+  color: #C0C0C0;
+  line-height: 20px;
+}
+/* === НОВАЯ КНОПКА "Check it out" */
+.my-gear-btn {
+    margin-top: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 16px 28px;
+    border-radius: 16px;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.my-gear-btn:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateX(12px);
+}
+
+.my-gear-circle {
+    width: 34px;
+    height: 34px;
+    background: #000;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+}
+
+.my-gear-btn:hover .my-gear-circle {
+    transform: scale(1.25);
+    background: rgba(255,255,255,0.3);
+}
